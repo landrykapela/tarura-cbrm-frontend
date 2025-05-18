@@ -1,0 +1,7 @@
+{
+  "name": "tarura",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

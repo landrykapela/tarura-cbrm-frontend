@@ -1,36 +1,42 @@
 import { useEffect, useState } from "react";
-import { getRawGroups, getUserSession } from "../../utils/utils";
+import { getUserSession } from "../../utils/utils";
 import Sidebar from "../../components/sidebar";
 import GroupsTable from "./groups_table";
-import { GroupType } from "../../utils/types";
+import Header from "../../components/header";
+import { ApiClient } from "../../utils/apiclient";
+import Spinner from "../../components/spinner";
 
 const Groups = ()=>{
-  const [groups,setGroups]= useState<GroupType[]>([])
+  const userData = getUserSession()
+  const apiClient = new ApiClient(userData?.accessToken);
+  const [groupData,setGroupData]= useState<any>()
+  const [loading,setLoading]= useState<boolean>(false)
 
-    const userData = getUserSession()
-    const getGroups=()=>{
-      const data = getRawGroups();
-      setGroups(data)
+    const getGroups=async()=>{
+      setLoading(true)
+      const response = await apiClient.getGroups();
+      setGroupData(response.data.data)
+      setLoading(false)
     }
     useEffect(()=>{
       getGroups()
     },[])
     return(<>
-    <div className="w-full flex justify-end items-center bg-gray-100 pe-4">
-          <div className=" space-x-2 w-4/12 flex justify-end mt-0 items-center text-primary ">
-            <p className="text-end py-4">{userData?.email}</p>
-           
-          </div>
-        </div>
+     <Header user={userData} active={1}/>
+    
     <main className="w-full flex bg-white min-h-full">
 
       <div className="md:w-2/12 flex flex-col items-start text-center justify-center">
-        <Sidebar user={userData} active={1} />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 f
+        <Sidebar user={userData} active={1} /> 
       </div>
 
       <div className="md:w-9/12 mx-auto space-y-4 mt-2">
         <p className="text-2xl">Identified Groups</p>
-        <GroupsTable data={groups}/>
+        {loading ? <Spinner className="spinner-md"/> : (groupData ? <GroupsTable data={groupData}/>: 
+        <div className="w-full flex justify-center items-center">
+          <p className="text-red-500">No data found</p>
+        </div>)
+        }
        </div>
        </main>
     </>)

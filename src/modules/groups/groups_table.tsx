@@ -4,24 +4,30 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { GROUP_HEADINGS } from "../../utils/constants";
 import TableHeader from "../../components/table_header";
 import { GroupType } from "../../utils/types";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import PageControl from "../../components/page_control";
+import { MdUpload, MdUploadFile } from "react-icons/md";
 
 
 const GroupsTable = (props: any) => {
   const navigate = useNavigate()
-  const [data, setData] = useState<GroupType[]>([])
-  const [filteredData, setFilteredData] = useState<GroupType[]>([])
+  const [data, setData] = useState<GroupType[]>(props.data.data)
+  const [filteredData, setFilteredData] = useState<GroupType[]>(props.data.data)
+  const [currentPage, setCurrentPage] = useState<number>(props.data.currentPage)
+  const [hasNextPage, setHasNextPage] = useState<boolean>(props.data.hasNextPage)
+  const [hasPreviousPage, setHasPreviousPage] = useState<boolean>(props.data.hasPreviousPage)
+  const [totalPages, setTotalPages] = useState<number>(props.data.totalPages)
 
   const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
     const keyword = e.currentTarget.value;
     const filter = keyword.length > 0 ? keyword.toLowerCase().trim() : null
 
     if (filter) {
-      const result = props.data.filter((d: GroupType) => d.name_of_group?.toLowerCase().includes(filter)
-        || d.mkoa?.toLowerCase().includes(filter)
+      const result = props.data.filter((d: GroupType) => d.name?.toLowerCase().includes(filter)
+        || d.region?.toLowerCase().includes(filter)
         || d.district?.toLowerCase().includes(filter)
-        || d.kata?.toLowerCase().includes(filter)
-        || d.kijiji?.toLowerCase().includes(filter)
+        || d.ward?.toLowerCase().includes(filter)
+        || d.village?.toLowerCase().includes(filter)
       )
       setFilteredData(result)
     }
@@ -29,38 +35,42 @@ const GroupsTable = (props: any) => {
 
   }
   useEffect(() => {
-    setData(props.data)
-    setFilteredData(props.data)
+    setData(props.data.data)
+    setFilteredData(props.data.data)
   }, [data])
   return (<>
-    <div className="w-full mx-auto">
-      <input type="text" name="search" id="search" onChange={handleFilter} className="form-control" placeholder="search groups" />
+    <div className="md:flex w-full mx-auto justify-between items-center">
+      <input type="text" name="search" id="search" onChange={handleFilter} className="form-control w-8/12" placeholder="search groups" />
+      <div className="flex justify-end text-end items-center w-4/12 "><MdUpload className="text-accent hover:text-primary"/><Link to="/admin/groups/import" className="text-accent hover:text-primary"> Import CSV</Link></div>
     </div>
-    <table className="w-full text-left p-2 mx-auto border">
+    <table className="flex-col items-start justify-start w-full text-left p-2 mx-auto border">
       <TableHeader data={GROUP_HEADINGS} />
       <tbody className="w-full text-sm">
         {filteredData.map((row: GroupType, idx: number) => {
           return (
-            <tr key={row.id} className="border-b border-b-gray-200 py-8 hover:bg-gray-100 cursor-pointer" onClick={() => { navigate(`/admin/groups/view/${row.id}`, { state: { data: row } }) }}>
-              <td className="border-bottom px-1 py-2">{idx + 1}
+            <tr key={row.id} className="w-100 flex justify-start text-sm border-b border-b-gray-200 py-1 hover:bg-gray-100 cursor-pointer" onClick={() => { navigate(`/admin/groups/view/${row.id}`, { state: { data: row } }) }}>
+              <td className={`border-bottom ps-2 py-2 text-start w-2/12 md:w-1/12`}>{idx + 1}
               </td>
-              <td className="border-bottom px-1 py-2">{row.name_of_group}
+              <td className={`border-bottom ps-2 py-2 text-start w-5/12 md:w-2/12`}>{row.name}
               </td>
-              <td className="border-bottom px-1 py-2">{row.mkoa}
+              <td className={`border-bottom ps-2 py-2 text-start w-5/12 md:w-2/12`}>{row.region}
               </td>
-              <td className="border-bottom px-1 py-2">{row.district}
+              <td className={`md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.district}
               </td>
-              <td className="border-bottom px-1 py-2">{`${row.kata}`}
+              <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{`${row.ward}`}
               </td>
-              <td className="border-bottom px-1 py-2">{row.kijiji}
+              <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.village}
               </td>
-              <td className="border-bottom px-1 py-2">{`${row.latitude},${row.longitude}`}
+              <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.latitude ? `${row.latitude} , ${row.longitude}`:'Not available'}
+              </td>
+              <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.roadCode}
               </td>
             </tr>
           )
         })}
       </tbody>
     </table>
+    <PageControl onPageSizeChange={()=>{}} hasNext={hasNextPage} hasPrevious={hasPreviousPage} currentPage={currentPage} totalPages={totalPages} onNext={()=>{}} onPrevious={()=>{}}/>
   </>)
 
 };

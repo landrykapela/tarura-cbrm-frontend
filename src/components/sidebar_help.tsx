@@ -1,10 +1,7 @@
-import { clearSession, generateHelpTopics, getIcon, getMenuItems } from "../utils/utils";
-import { IMenuItem } from "../utils/types";
-import MenuButton from "./menu_button";
+import { clearSession, generateHelpTopics } from "../utils/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { LogoImage } from "./image_assets";
 import Image from './image'
-// import { DialogContext } from "../layout";
 
 
 const SidebarHelp = (props: any) => {

@@ -1,3 +1,3 @@
-import LogoImage from '../assets/TARURA.jpg'
-
-export {LogoImage}
+import LogoImage from '../resources/TARURA.jpg'
+import Avatar from '../resources/avatar.png'
+export {LogoImage, Avatar}

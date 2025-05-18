@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import MapView from "@arcgis/core/views/MapView";
 import WebMap from "@arcgis/core/WebMap";
 
-const ArcGisMap = ()=> {
+const ArcGisMap = (props:any)=> {
 
   const mapDiv = useRef(null)
 
@@ -13,27 +13,14 @@ const ArcGisMap = ()=> {
        */
       const webmap = new WebMap({
         portalItem: {
-          id: "48908367c2d24cd9a2989bcc6b52e7c1"
+          id: props.profileId
         }
       });
 
       const view = new MapView({
-        container: "mapDiv",
+        container: `mapDiv`,
         map: webmap
       });
-
-    //   const bookmarks = new Bookmarks({
-    //     view
-    //   });
-
-    //   const bkExpand = new Expand({
-    //     view,
-    //     content: bookmarks,
-    //     expanded: true
-    //   });
-
-      // Add the widget to the top-right corner of the view
-    //   view.ui.add(bkExpand, "top-right");
 
       // Bonus - how many bookmarks in the webmap?
       view.when(() => {
