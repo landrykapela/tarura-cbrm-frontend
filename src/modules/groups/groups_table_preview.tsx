@@ -20,9 +20,9 @@ const GroupsTablePreview = (props: any) => {
   useEffect(() => {
   }, [])
   return (<>
-    <div className="flex justify-between items-center">
-      <p className="text-2xl md:w-8/12">Imported Groups (Preview)</p>
-      <button className="btn bg-primary text-white md:w-2/12" onClick={saveGroups}>Save</button>
+    <div className="flex-col justify-center md:flex md:justify-between items-center mx-2">
+      <p className="text-2xl md:w-8/12 text-center">Imported Groups (Preview)</p>
+      <button className="btn bg-primary text-white md:w-2/12 w-10/12 mx-auto " onClick={saveGroups}>Save</button>
     </div>
     <table className="flex-col items-start justify-start w-full text-left p-2 mx-auto border">
       <TableHeader data={GROUP_HEADINGS} />
@@ -36,7 +36,7 @@ const GroupsTablePreview = (props: any) => {
               </td>
               <td className={`border-bottom ps-2 py-2 text-start w-5/12 md:w-2/12`}>{row.region}
               </td>
-              <td className={`md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.district}
+              <td className={`border-bottom ps-2 py-2 text-start w-5/12 md:w-2/12`}>{row.district}
               </td>
               <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{`${row.ward}`}
               </td>

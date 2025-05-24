@@ -8,6 +8,7 @@ import Help from "./modules/help/help";
 import GroupView from "./modules/groups/groups_view";
 import Settings from "./modules/settings/settings";
 import GroupsImport from "./modules/groups/groups_import";
+import MembersImport from "./modules/members/members_import";
 
 const MainRoutes = ()=>{
 
@@ -26,6 +27,7 @@ const MainRoutes = ()=>{
         <Route path="/admin/groups/import" element={<GroupsImport />}/>
         <Route path="/admin/groups/view/:id" element={<GroupView />}/>
         <Route path="/admin/members" element={<Members />}/>
+        <Route path="/admin/members/import" element={<MembersImport />}/>
         <Route path="/admin/settings" element={<Settings />} />
         </Routes>
         </BrowserRouter>

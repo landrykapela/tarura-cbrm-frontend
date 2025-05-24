@@ -5,18 +5,13 @@ import { GROUP_HEADINGS } from "../../utils/constants";
 import TableHeader from "../../components/table_header";
 import { GroupType } from "../../utils/types";
 import { Link, useNavigate } from "react-router-dom";
-import PageControl from "../../components/page_control";
-import { MdUpload, MdUploadFile } from "react-icons/md";
+import { MdUpload } from "react-icons/md";
 
 
 const GroupsTable = (props: any) => {
   const navigate = useNavigate()
   const [data, setData] = useState<GroupType[]>(props.data.data)
   const [filteredData, setFilteredData] = useState<GroupType[]>(props.data.data)
-  const [currentPage, setCurrentPage] = useState<number>(props.data.currentPage)
-  const [hasNextPage, setHasNextPage] = useState<boolean>(props.data.hasNextPage)
-  const [hasPreviousPage, setHasPreviousPage] = useState<boolean>(props.data.hasPreviousPage)
-  const [totalPages, setTotalPages] = useState<number>(props.data.totalPages)
 
   const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
     const keyword = e.currentTarget.value;
@@ -40,8 +35,8 @@ const GroupsTable = (props: any) => {
   }, [data])
   return (<>
     <div className="md:flex w-full mx-auto justify-between items-center">
-      <input type="text" name="search" id="search" onChange={handleFilter} className="form-control w-8/12" placeholder="search groups" />
-      <div className="flex justify-end text-end items-center w-4/12 "><MdUpload className="text-accent hover:text-primary"/><Link to="/admin/groups/import" className="text-accent hover:text-primary"> Import CSV</Link></div>
+      <input type="text" name=" " id="search" onChange={handleFilter} className="form-control w-8/12" placeholder="search groups" />
+      {props.isAdmin ? <div className="flex justify-start md:justify-end md:text-end items-center md:w-4/12 "><MdUpload className="text-accent hover:text-primary"/><Link to="/admin/groups/import" className="text-accent hover:text-primary"> Import CSV</Link></div>:null}
     </div>
     <table className="flex-col items-start justify-start w-full text-left p-2 mx-auto border">
       <TableHeader data={GROUP_HEADINGS} />
@@ -53,15 +48,15 @@ const GroupsTable = (props: any) => {
               </td>
               <td className={`border-bottom ps-2 py-2 text-start w-5/12 md:w-2/12`}>{row.name}
               </td>
-              <td className={`border-bottom ps-2 py-2 text-start w-5/12 md:w-2/12`}>{row.region}
+              <td className={`border-bottom ps-2 py-2 text-start w-5/12 md:w-2/12`}>{row.latitude ? `${row.latitude} , ${row.longitude}`:'Unknown'}
               </td>
-              <td className={`md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.district}
+              <td className={`md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.village}
               </td>
               <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{`${row.ward}`}
               </td>
-              <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.village}
+              <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.district}
               </td>
-              <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.latitude ? `${row.latitude} , ${row.longitude}`:'Not available'}
+              <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.region}
               </td>
               <td className={`hidden md:block border-bottom ps-2 py-2 text-start md:w-2/12`}>{row.roadCode}
               </td>
@@ -70,7 +65,7 @@ const GroupsTable = (props: any) => {
         })}
       </tbody>
     </table>
-    <PageControl onPageSizeChange={()=>{}} hasNext={hasNextPage} hasPrevious={hasPreviousPage} currentPage={currentPage} totalPages={totalPages} onNext={()=>{}} onPrevious={()=>{}}/>
+    
   </>)
 
 };

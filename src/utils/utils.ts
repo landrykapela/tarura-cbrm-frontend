@@ -276,108 +276,35 @@ export const generateHelpTopics = () => {
     {
       "id": 1,
       "title": "Getting Started",
-      "description": "A guide to help you set up your account and start using our services.",
+      "description": "A guide to help you set up your account and start using this system.",
       "category": "Account Setup",
-      "content": "Welcome to our platform! This guide is designed to help you navigate the initial steps of setting up your account. First, visit our registration page where you'll need to enter your email and create a secure password. After submitting your details, check your inbox for a confirmation email. Make sure to click the link provided to verify your account.\n\nOnce your account is verified, you can log in using your credentials. The dashboard will provide you with a snapshot of your account status, including any notifications or messages from our team. We recommend taking a moment to familiarize yourself with the layout and features available on the dashboard.\n\nNext, consider customizing your profile. Go to the 'Profile Settings' section where you can add personal information, update your preferences, and manage notification settings. This will ensure that you receive relevant updates and information tailored to your needs. If you have any questions, feel free to consult our FAQ section or reach out to support."
+      "content": "Welcome to our platform! This guide is designed to help you navigate the initial steps of setting up your account. You need to request the system administrator to register an account for you.\nIf you are the system administrator, go to login. After a successful login, navigate to Settings then you can add a user"
     },
     {
       "id": 2,
       "title": "Password Reset",
       "description": "Instructions on how to reset your password if you’ve forgotten it.",
       "category": "Account Security",
-      "content": "Forgetting your password can be frustrating, but resetting it is quick and easy. Start by navigating to the login page and click on the 'Forgot Password?' link. This will take you to a page where you can enter the email address associated with your account.\n\nAfter submitting your email, check your inbox for a password reset link. Click on the link, and you will be directed to a secure page where you can create a new password. Choose a strong password that includes a mix of letters, numbers, and symbols to enhance your account security.\n\nOnce you’ve successfully reset your password, you can log in with your new credentials. Remember to keep your password safe and consider using a password manager to help you manage your passwords securely. If you encounter any issues during the reset process, don’t hesitate to contact our support team for assistance."
+      "content": "Forgetting your password can be frustrating, but resetting it is quick and easy. This is a controlled system and therefore most security issues such as password resets are handled by the system's administrator. If you have forgotten your password, you need to contact the system administrator in order to reset your password.\nIn case you are the system adminstrator, you need to keep your password secure as you'll be locked out if you forget or lose it. A system adminstrator and other users can also change their password from the settings"
     },
     {
       "id": 3,
-      "title": "How to Update Your Profile",
-      "description": "Learn how to update your personal information and preferences.",
-      "category": "Account Management",
-      "content": "Keeping your profile up to date is essential for a personalized experience on our platform. To start, log in to your account and navigate to the 'Profile Settings' section found in the main menu. Here, you can edit various details such as your name, email address, and contact information.\n\nIn addition to basic information, you can also manage your preferences regarding communication from us. Whether you want to receive newsletters, updates, or notifications, you can customize these settings to ensure you stay informed without being overwhelmed.\n\nWe also encourage you to upload a profile picture. A friendly face helps foster a sense of community and can make interactions more personal. Remember to save any changes before exiting the profile section. If you have any questions about the process, our support team is here to help!"
+      "title": "How to Import Data",
+      "description": "How to import data in Bulk",
+      "category": "Data Management",
+      "content": "Since groups and members can be registered offline, you can import in bulk into this system. To import groups you need to prepare a CSV file with headers in the first row. For group data to be correctly imported, the CSV file must follow the following format for headings:\n"+
+      "name, region, district, ward, village, registrationDate, registrationNumber, registrationType, registrationStatus, chairmanName, chairmanPhone, secretaryName, secretaryPhone, treasurerName, treasurerPhone, membersCount, femalesCount, malesCount, disabledCount, latitude, longitude, roadCode, roadLength. \nThe order is not important. This means that the CSV must have a head row with the mentioned headings in any order.\n"+
+      "If you want to import members, the process is the same except the CSV headings must be as below:\n"+
+      "firstName,lastName, phoneNumber, age, region, district, ward, group, role, gender, village\n To import groups, navigate to the groups page and then import CSV. Similarly to import members, navigate to the members page and select import CSV"
     },
     {
       "id": 4,
-      "title": "Managing Notifications",
-      "description": "Steps to customize your notification settings to stay informed.",
-      "category": "Settings",
-      "content": "Managing your notification preferences is key to ensuring that you receive important updates while avoiding unnecessary distractions. To adjust these settings, log into your account and navigate to the 'Settings' menu. Here, you will find the 'Notifications' tab.\n\nIn the notifications section, you can choose which types of alerts you would like to receive. Options typically include email notifications for account activities, updates about new features, and reminders for upcoming events or deadlines. Select the preferences that suit your needs best.\n\nAdditionally, consider opting for push notifications if you’re using our mobile app. This way, you can stay informed in real-time. Always remember to save your settings after making changes. If at any point you feel unsure, refer to our help articles or contact support for guidance."
-    },
-    {
-      "id": 5,
-      "title": "Understanding Billing",
-      "description": "An overview of our billing process, including payment methods and invoices.",
-      "category": "Billing",
-      "content": "Navigating the billing process is crucial for managing your account efficiently. Our platform offers multiple payment methods to suit your needs, including credit cards, debit cards, and PayPal. To set up your preferred payment method, go to the 'Billing' section within your account settings.\n\nYou can view your billing history and upcoming charges directly from this section. Detailed invoices are generated monthly, allowing you to keep track of your expenses easily. Each invoice includes a breakdown of services used, so you can see exactly what you’re paying for.\n\nIf you encounter any discrepancies or have questions about a charge, our support team is ready to assist you. We recommend regularly checking this section to ensure your billing information is current and to avoid any interruptions in service."
-    },
-    {
-      "id": 6,
-      "title": "Technical Support",
-      "description": "Common troubleshooting steps for technical issues.",
-      "category": "Technical Issues",
-      "content": "Experiencing technical issues can be frustrating, but our support team is here to help. For common problems, we recommend starting with a few troubleshooting steps. First, ensure that your internet connection is stable. Many issues arise from connectivity problems, so verifying your network status is a crucial first step.\n\nIf you're facing difficulties with specific features or functions, try clearing your browser's cache or cookies. This can resolve many common display issues. Additionally, ensure that your browser is up to date for optimal performance.\n\nIf problems persist after these steps, our technical support team is available to assist you. You can reach them through the 'Contact Support' page on our website. We encourage you to provide detailed information about the issue to help us assist you more effectively."
-    },
-    {
-      "id": 7,
-      "title": "Using the Mobile App",
-      "description": "A comprehensive guide on how to navigate and use our mobile application.",
-      "category": "Mobile",
-      "content": "Our mobile app is designed to provide you with a seamless experience on the go. Once you've downloaded the app, log in using your account credentials. The user interface is intuitive, with easy access to all the features available on our desktop version.\n\nExplore the main menu to navigate between different sections, such as your profile, notifications, and billing. You can also manage your settings directly from the app, ensuring that your preferences are always up to date.\n\nOne of the key features of our mobile app is the ability to receive push notifications. This allows you to stay updated on important account activities and new features in real-time. For any questions or issues while using the app, refer to the help section or contact support for assistance."
-    },
-    {
-      "id": 8,
-      "title": "Frequently Asked Questions",
-      "description": "Answers to the most common questions from our users.",
-      "category": "General",
-      "content": "Our FAQ section is designed to address the most common inquiries from our users. Here, you will find answers to questions about account setup, billing, and troubleshooting. We encourage you to check this resource before reaching out to support, as many concerns can be resolved quickly through these answers.\n\nFor example, if you're curious about password security, our FAQ explains the best practices for creating a strong password and how to reset it if forgotten. Additionally, you can find information on subscription plans and how to change them based on your needs.\n\nWe update this section regularly based on user feedback, so if you have a question that isn’t answered, let us know! Your feedback helps us improve our resources and serve you better."
-    },
-    {
-      "id": 9,
-      "title": "Contacting Support",
-      "description": "Learn how to get in touch with our support team for further assistance.",
-      "category": "Customer Support",
-      "content": "If you need assistance, our support team is here to help! You can reach out to us through multiple channels, including email, live chat, and our support ticket system. To get started, navigate to the 'Contact Support' page on our website.\n\nFor urgent issues, we recommend using the live chat feature. Our representatives are available during business hours to provide immediate assistance. If you prefer to send an email, please include as much detail as possible about your issue, along with your account information, to help us resolve your concerns more efficiently.\n\nWe aim to respond to all inquiries within 24 hours, but during peak times, it may take longer. Thank you for your patience, and we appreciate the opportunity to assist you!"
-    },
-    {
-      "id": 10,
-      "title": "Privacy Policy",
-      "description": "Information about how we handle your data and privacy.",
-      "category": "Privacy",
-      "content": "Your privacy is our priority. Our Privacy Policy outlines how we collect, use, and protect your personal data. We want to ensure you feel secure and informed while using our services. We collect data primarily to enhance your user experience and provide personalized content.\n\nWe use industry-standard security measures to safeguard your information. This includes encryption protocols and regular security audits to protect against unauthorized access. We do not share your personal data with third parties without your consent, except in cases required by law.\n\nFor more detailed information, please review our full Privacy Policy on our website. If you have any questions or concerns about your data, feel free to reach out to our support team. Your trust is important to us, and we are committed to transparency."
-    },
-    {
-      "id": 11,
-      "title": "User Feedback",
-      "description": "How to provide feedback and suggestions for improving our services.",
-      "category": "General",
-      "content": "We value your feedback! Our platform is designed to evolve based on user experiences, and your insights are crucial in shaping future updates. You can provide feedback directly through our website by navigating to the 'Feedback' section.\n\nWhether you have suggestions for new features, ideas for improving existing ones, or any other comments, we want to hear from you. We review all feedback thoroughly, and while we may not be able to respond to every submission, rest assured that your input is taken seriously.\n\nAdditionally, we often conduct surveys and polls to gather user opinions on specific features. Participating in these opportunities not only gives you a voice but also helps us prioritize enhancements that matter most to you."
-    },
-    {
-      "id": 12,
-      "title": "Troubleshooting Login Issues",
-      "description": "Steps to resolve issues when logging into your account.",
-      "category": "Account Security",
-      "content": "Having trouble logging into your account? Don’t worry; this is a common issue that can usually be resolved easily. First, double-check that you are entering the correct email address and password. Remember, passwords are case-sensitive, so ensure that Caps Lock is not enabled.\n\nIf you've forgotten your password, simply click on the 'Forgot Password?' link on the login page. Follow the prompts to reset your password using the email associated with your account. After resetting, try logging in again with your new password.\n\nIf you are still experiencing issues, check to ensure that your internet connection is stable and that your browser is up to date. Clear your browser’s cache and cookies, as this can resolve many login-related problems. If all else fails, reach out to our support team for further assistance."
-    },
-    {
-      "id": 13,
-      "title": "Feature Requests",
-      "description": "How to submit requests for new features or improvements.",
-      "category": "General",
-      "content": "We’re always looking to improve our platform, and your input is essential in helping us prioritize new features. If you have an idea or suggestion, please navigate to the 'Feature Requests' section on our website. Here, you can submit your idea and explain how it would benefit your experience.\n\nWe encourage you to be as detailed as possible in your submission. Include any specific functionality you envision and how it could enhance our services. This information will help our development team evaluate the feasibility of your request.\n\nIn addition to direct submissions, we also invite users to participate in discussions on our community forums. Engaging with other users can provide valuable insights and additional perspectives on your ideas. Thank you for helping us make our platform better!"
-    },
-    {
-      "id": 14,
-      "title": "Data Export and Import",
-      "description": "Instructions on how to export your data and import it into other services.",
+      "title": "Download Data for GIS",
+      "description": "How to download data to use in GIS.",
       "category": "Data Management",
-      "content": "Managing your data is important, and we provide tools to help you export and import your information easily. To export your data, log into your account and navigate to the 'Data Management' section. Here, you’ll find options to download your data in various formats, such as CSV or JSON, making it compatible with many other services.\n\nOnce you've selected the data you wish to export, simply click the 'Export' button. Your data will be prepared and a download link will be emailed to you for your convenience. Please allow a few moments for this process, especially if you have a large amount of data.\n\nIf you're looking to import data from another service, our platform supports various import formats. Follow the instructions in the 'Import Data' section, and you’ll be guided through the process step-by-step. Should you encounter any issues, our support team is always ready to assist you."
+      "content": "Group data are geo data and therefore can be visualized in a GIS system such as Google Earth, ArcGIS, etc. To achieve this, navigate to the dashboard and download the (.kml and .shp) files for each region."
     },
-    {
-      "id": 15,
-      "title": "Using Advanced Features",
-      "description": "A guide to utilizing advanced features and functionalities in our platform.",
-      "category": "Features",
-      "content": "Our platform offers a range of advanced features designed to enhance your user experience. To make the most of these functionalities, start by exploring the 'Advanced Features' section in your account settings. Here, you will find options such as automation tools, integrations with other applications, and customizable dashboards.\n\nOne of the standout features is the automation tool, which allows you to set up workflows that can save you time and streamline your processes. For instance, you can create automated alerts for important account activities or schedule regular reports to be sent directly to your inbox.\n\nAdditionally, our platform supports integrations with third-party applications, enabling you to synchronize your data across different tools seamlessly. This can improve your productivity and help you maintain a centralized system. If you have any questions or need guidance on how to use these advanced features effectively, refer to our help documentation or contact support."
-    }
+    
   ]
 
 

@@ -81,7 +81,7 @@ export class Group {
 
 }
 export type GroupType = {
-   id?: number,
+   id?: string,
    name: string;
    region: string;
    district: string;
@@ -103,6 +103,10 @@ export type GroupType = {
    disabledCount?: number;
    latitude?: number;
    longitude?: number;
+   tin?: string;
+   brela?: string;
+   municipalRegistration?: string;
+   businessLicense?: string;
    roadCode?: string;
    roadLength?: number;
    members?: Member[];
@@ -116,10 +120,12 @@ export type Member = {
    region?: string;
    district?: string;
    ward?: string;
-   group: GroupType;
+   group?: GroupType;
+   group_name?: string;
    role?: string;
    gender?: string;
-   address?: string;
+   village?: string;
+   occupation?: string;
 }
 export interface ISession {
    email?: string;
@@ -143,10 +149,12 @@ export interface IMenuItem {
    clicked?: boolean
 }
 
-export interface IPaginationOptions {
-   page?: number,
-   take?: number,
-   paginate?: boolean
+export type IPaginationOptions = {
+   page?: number;
+   take?: number;
+   search?: string;
+  sort?: 'asc' | 'desc';
+  tags?: string[];
 }
 
 export interface PapaParseResult{

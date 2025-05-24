@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const PageControl = (props:any)=>{
+    const [pageSize,setPageSize] = useState<number>(props.pageSize)
 const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-   // alert(e.currentTarget.value)
-    props.onPageSizeChange(e.currentTarget.value)
+    const ps = Number(e.currentTarget.value)
+    setPageSize(ps)
+    props.onPageSizeChange(ps)
 }
     return (<div className="flex justify-between my-4">
     <div className="w-6/12 text-left">
         <span>
             Show
-        <select id="pageSize" onChange={(e)=>handleChange(e)} className="mx-1" defaultValue={props.pageSize}>
+        <select id="pageSize" onChange={(e)=>handleChange(e)} className="mx-1" defaultValue={pageSize}>
             <option value={"--"} disabled></option>
             <option value={10}>10</option>
             <option  value={20}>20</option>

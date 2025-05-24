@@ -1,33 +1,22 @@
 'use client';
-import { useState, useEffect, useRef, ChangeEvent } from "react";
-import { clearSession, getQueryString, getRawGroups, getUserSession } from "../../utils/utils";
-import { GroupType, IMenuItem, IReportSummary } from "../../utils/types";
+import { useState, useEffect } from "react";
+import { getUserSession } from "../../utils/utils";
+import { IReportSummary } from "../../utils/types";
 import SummaryCard from "../../components/summary_card";
 import ReactApexChart from "react-apexcharts";
-import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/spinner";
 import Sidebar from "../../components/sidebar";
 import { ApexOptions } from "apexcharts";
-import ArcGisMap from "../../components/arcgis_map";
-import { MdClose, MdFileDownload, MdMenu } from "react-icons/md";
-import Topbar from "../../components/topbar";
+import { MdFileDownload } from "react-icons/md";
 import Header from "../../components/header";
-import { ARCGIS_MOROGORO_ID, ARCGIS_DODOMA_ID, ARCGIS_TANGA_ID, ARCGIS_PWANI_ID } from "../../utils/constants";
 import { ApiClient } from "../../utils/apiclient";
 
 
 const Dashboard = (_props: any) => {
-    const mapRef = useRef();
-    console.log('my location:', window.location.pathname)
     const userData = getUserSession();
-    const apiClient = new ApiClient(userData?.accessToken)
-    const target = `${window.location.pathname}${getQueryString(window.location.href)}`
-    const navigate = useNavigate()
-    const [menuItems, setMenuItems] = useState<IMenuItem[]>([])
-    const [notifications, setNotifications] = useState<Notification[]>([])
+    const apiClient = new ApiClient(userData?.accessToken);
     const [loading, setLoading] = useState<boolean>(false)
     const [summary, setSummary] = useState<IReportSummary>()
-    const [reports, setReports] = useState<IReportSummary>()
     const [groupBarChartSeries,setGroupBarChartSeries] = useState<any>([{
         data: []
     }])
@@ -44,13 +33,6 @@ const Dashboard = (_props: any) => {
         title: {
             text: 'Registered Groups by District',
         },
-        // stroke: {
-        //     curve: "smooth",
-        //     lineCap: 'butt',
-        //     colors: undefined,
-        //     width: 2,
-        //     dashArray: 0,
-        // },
         xaxis: {
             categories: summary && summary?.groupsByDistrict ? summary?.groupsByDistrict.map((g) => g.district) : []
         }
@@ -58,7 +40,6 @@ const Dashboard = (_props: any) => {
     const options_ = {
         chart: {
             id: 'apexchart-example',
-
             toolbar: { show: false }
 
         },
@@ -69,7 +50,6 @@ const Dashboard = (_props: any) => {
             categories: summary && summary?.membersByDistrict ? summary?.membersByDistrict.map((g) => g.district) : []
         }
     }
-
 
     const options4: ApexOptions = {
         chart: {
@@ -195,12 +175,10 @@ const Dashboard = (_props: any) => {
 
 
     }
-    //    const series2: ,
-
+   
     const getGroupReports = async () => {
         const report = await apiClient.getGroupReports()
         const summary: IReportSummary = report.data.data;
-        setReports(summary)
         setSummary(summary);
         setGroupBarChartSeries([{
             name: "Groups",
@@ -212,16 +190,6 @@ const Dashboard = (_props: any) => {
         }])
     }
 
-    const handleDownloadClik=(e:React.MouseEvent)=>{
-        const id = e.currentTarget.id;
-        const target = `https://neelansoft.co.tz/tarura/${id}.kml`;
-        const a = document.createElement('a');
-        a.href = target;
-        a.download = `${id}.kml`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a)
-    }
     const loadData = async () => {
         setLoading(true)
         await getGroupReports()
@@ -270,12 +238,8 @@ const Dashboard = (_props: any) => {
                         
                     </div>
                     <h1 className="text-2xl my-8 pt-8">Download Data Maps</h1>
-                    <div className="">
-                        <div className="flex justify-start items-center"><span className=" mx-6 text-primary cursor-pointer items-center justify-between">Dodoma</span> <MdFileDownload className="text-primary cursor-pointer" id="dodoma"/></div>
-                        <div className="flex justify-start items-center"><span className=" mx-6 text-primary cursor-pointer items-center justify-between">Morogoro</span> <MdFileDownload className="text-primary cursor-pointer" id="morogoro"/></div>
-                        <div className="flex justify-start items-center"><span className=" mx-6 text-primary cursor-pointer items-center justify-between">Tanga</span> <MdFileDownload className="text-primary cursor-pointer" id="tanga"/></div>
-                        <div className="flex justify-start items-center"><span className=" mx-6 text-primary cursor-pointer items-center justify-between">Pwani</span> <MdFileDownload className="text-primary cursor-pointer" id="pwani"/></div>
-                    </div>
+                        <a className="flex justify-start items-center" download href={`/tarura_data.zip`}><span className="mx-6 text-accent cursor-pointer items-center justify-between">Download</span> <MdFileDownload className="text-accent cursor-pointer"/></a> 
+                        
                 </div>}
 
 
